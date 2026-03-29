@@ -1,0 +1,55 @@
+﻿
+    @model List<EmployeeHrSystem.Models.Payroll>
+
+    <h2>Payroll</h2>
+
+    <form asp-action="Process" asp-controller="Payroll" method="post">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label">Employee</label>
+            <select name="employeeId"
+                    class="form-select"
+                    asp-items="ViewBag.EmployeeItems" required>
+                <option value="">-- select --</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Month (YYYY-MM)</label>
+            <input name="month" class="form-control" placeholder="2026-03" required />
+        </div>
+
+        <div class="col-md-3 align-self-end">
+            <button type="submit" class="btn btn-primary">Process</button>
+        </div>
+    </div>
+</form>
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Month</th>
+            <th>Basic</th>
+            <th>Deductions</th>
+            <th>Net</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Employee?.Name</td>
+                <td>@p.Month</td>
+                <td>@p.BasicSalary</td>
+                <td>@p.Deductions</td>
+                <td>@p.NetSalary</td>
+                <td>@p.PaymentStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>

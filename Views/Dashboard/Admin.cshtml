@@ -1,0 +1,83 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-0"><i class="bi bi-speedometer2 text-primary me-2"></i>Admin Dashboard</h2>
+        <p class="text-muted mb-0">Full system overview &amp; control</p>
+    </div>
+    <span class="badge bg-primary fs-6 px-3 py-2"><i class="bi bi-shield-fill-check me-1"></i>Admin</span>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #6366f1 !important;">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3" style="background:#ede9fe;"><i class="bi bi-people-fill fs-3 text-primary"></i></div>
+                <div>
+                    <div class="text-muted small">Employees</div>
+                    <div class="fw-bold fs-4">All</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #10b981 !important;">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3" style="background:#d1fae5;"><i class="bi bi-cash-stack fs-3 text-success"></i></div>
+                <div>
+                    <div class="text-muted small">Payroll</div>
+                    <div class="fw-bold fs-4">Full Access</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #f59e0b !important;">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3" style="background:#fef3c7;"><i class="bi bi-calendar-check fs-3 text-warning"></i></div>
+                <div>
+                    <div class="text-muted small">Leave Requests</div>
+                    <div class="fw-bold fs-4">Manage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100" style="border-left: 4px solid #ef4444 !important;">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3" style="background:#fee2e2;"><i class="bi bi-graph-up-arrow fs-3 text-danger"></i></div>
+                <div>
+                    <div class="text-muted small">Reports</div>
+                    <div class="fw-bold fs-4">All Reports</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5 class="fw-semibold mb-3 text-muted">Quick Access — All Modules</h5>
+<div class="row g-3">
+    @foreach (var m in new[] {
+        ("Employee","Index","bi-person-badge","primary","Manage Employees"),
+        ("Department","Index","bi-building","secondary","Departments"),
+        ("Attendance","Index","bi-clock-history","success","Attendance"),
+        ("Leave","Index","bi-calendar-x","warning","Leave Requests"),
+        ("Payroll","Index","bi-wallet2","info","Payroll"),
+        ("Performance","Index","bi-bar-chart-line","danger","Performance"),
+        ("Appraisal","Index","bi-star-half","dark","Appraisals"),
+        ("Report","HR","bi-file-earmark-bar-graph","primary","HR Reports"),
+    })
+    {
+        <div class="col-md-3">
+            <a asp-controller="@m.Item1" asp-action="@m.Item2"
+               class="card border-0 shadow-sm text-decoration-none h-100 dashboard-card">
+                <div class="card-body text-center py-4">
+                    <i class="bi @m.Item3 fs-2 text-@m.Item4 mb-2 d-block"></i>
+                    <div class="fw-semibold">@m.Item5</div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

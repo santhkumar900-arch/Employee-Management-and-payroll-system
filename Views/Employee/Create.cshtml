@@ -1,0 +1,31 @@
+﻿@model Employee
+
+<h2>Create Employee</h2>
+
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Designation</label>
+        <input asp-for="Designation" class="form-control" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Department</label>
+        <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.Departments"></select>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Basic Salary</label>
+        <input asp-for="BasicSalary" class="form-control" />
+    </div>
+    <div class="col-12">
+        <label class="form-label">Contact Info</label>
+        <input asp-for="ContactInfo" class="form-control" />
+    </div>
+    <div class="col-12">
+        <button class="btn btn-success" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</form>

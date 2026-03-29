@@ -1,0 +1,29 @@
+﻿@model List<EmployeeHrSystem.Models.Department>
+
+<h2>Departments</h2>
+
+<p>
+    <a asp-controller="Department"
+           asp-action="Create"
+           class="btn btn-primary">
+        Add Department
+    </a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.DepartmentId</td>
+                <td>@d.DepartmentName</td>
+            </tr>
+        }
+    </tbody>
+</table>

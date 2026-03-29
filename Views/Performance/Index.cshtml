@@ -1,0 +1,31 @@
+﻿@model List<EmployeeHrSystem.Models.Evaluation>
+
+<h2>Performance Evaluations</h2>
+
+<p>
+    <a asp-controller="Performance" asp-action="Record" class="btn btn-success">
+    Record Evaluation
+</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Date</th>
+            <th>Score</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.Employee?.Name</td>
+                <td>@e.EvaluationDate</td>
+                <td>@e.Score</td>
+                <td>@e.Remarks</td>
+            </tr>
+        }
+    </tbody>
+</table>

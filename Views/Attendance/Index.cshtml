@@ -1,0 +1,29 @@
+﻿@model List<EmployeeHrSystem.Models.Attendance>
+
+<h2>Attendance</h2>
+
+<p>
+    <a asp-controller="Attendance" asp-action="Mark" class="btn btn-success">
+        Mark Attendance
+    </a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Emloyee</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Employee?.Name</td>
+                <td>@a.Date</td>
+                <td>@a.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

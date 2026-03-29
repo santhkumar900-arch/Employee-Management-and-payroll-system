@@ -1,0 +1,243 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login — Employee Management &amp; Payroll System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+        :root {
+            --brand: #4f46e5;
+            --brand-dark: #3730a3;
+            --grad-start: #1e1b4b;
+            --grad-end:   #0f0c29;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--grad-start) 0%, #302b63 50%, var(--grad-end) 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* subtle animated orbs */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .35;
+            pointer-events: none;
+        }
+        body::before {
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, #6366f1, transparent);
+            top: -120px; left: -120px;
+            animation: drift 12s ease-in-out infinite alternate;
+        }
+        body::after {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #a855f7, transparent);
+            bottom: -100px; right: -100px;
+            animation: drift 9s ease-in-out infinite alternate-reverse;
+        }
+        @@keyframes drift {
+            from { transform: translate(0,0); }
+            to   { transform: translate(40px, 40px); }
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255,255,255,.08);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 20px;
+            padding: 2.5rem 2.25rem 2.25rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,.45);
+            animation: slideUp .5s ease both;
+        }
+        @@keyframes slideUp {
+            from { opacity:0; transform: translateY(28px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+
+        .brand-icon {
+            width: 58px; height: 58px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; color: #fff;
+            margin: 0 auto 1rem;
+            box-shadow: 0 8px 24px rgba(99,102,241,.55);
+        }
+
+        .card-title {
+            color: #fff;
+            font-size: 1.45rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: .25rem;
+        }
+        .card-subtitle {
+            color: rgba(255,255,255,.55);
+            font-size: .85rem;
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .form-label {
+            color: rgba(255,255,255,.80);
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin-bottom: .35rem;
+        }
+
+        .form-control, .form-select {
+            background: rgba(255,255,255,.10) !important;
+            border: 1px solid rgba(255,255,255,.18) !important;
+            color: #fff !important;
+            border-radius: 10px;
+            padding: .65rem 1rem;
+            transition: border-color .25s, box-shadow .25s;
+        }
+        .form-control::placeholder { color: rgba(255,255,255,.35) !important; }
+        .form-control:focus, .form-select:focus {
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 3px rgba(99,102,241,.30) !important;
+            outline: none;
+        }
+        .form-select option { background: #1e1b4b; color: #fff; }
+
+        .input-group-text {
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.18);
+            border-right: none;
+            color: rgba(255,255,255,.55);
+            border-radius: 10px 0 0 10px;
+        }
+        .input-group .form-control { border-left: none !important; border-radius: 0 10px 10px 0; }
+
+        .btn-login {
+            width: 100%;
+            padding: .72rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: .03em;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border: none;
+            color: #fff;
+            transition: transform .15s, box-shadow .15s;
+            box-shadow: 0 6px 20px rgba(99,102,241,.45);
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(99,102,241,.60);
+        }
+        .btn-login:active { transform: translateY(0); }
+
+        .alert-error {
+            background: rgba(239,68,68,.15);
+            border: 1px solid rgba(239,68,68,.40);
+            color: #fca5a5;
+            border-radius: 10px;
+            padding: .65rem 1rem;
+            font-size: .88rem;
+            margin-bottom: 1.25rem;
+            display: flex; align-items: center; gap: .5rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,.12);
+            margin: 1.5rem 0 1.1rem;
+        }
+
+        .hint-box {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 10px;
+            padding: .75rem 1rem;
+            font-size: .78rem;
+            color: rgba(255,255,255,.55);
+        }
+        .hint-box strong { color: rgba(255,255,255,.75); }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="brand-icon"><i class="bi bi-people-fill"></i></div>
+        <h1 class="card-title">Employee Management</h1>
+        <p class="card-subtitle">Sign in to your account</p>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error as string))
+        {
+            <div class="alert-error">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                @ViewBag.Error
+            </div>
+        }
+
+        <form id="loginForm" method="post" action="/Account/Login" novalidate>
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" id="username" name="username" class="form-control"
+                           placeholder="Enter username" autocomplete="username" required />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" id="password" name="password" class="form-control"
+                           placeholder="Enter password" autocomplete="current-password" required />
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label" for="role">Role</label>
+                <select id="role" name="role" class="form-select" required>
+                    <option value="" disabled selected>— Select your role —</option>
+                    <option value="Admin">Admin</option>
+                    <option value="HR Officer">HR Officer</option>
+                    <option value="Payroll Officer">Payroll Officer</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Employee">Employee</option>
+                </select>
+            </div>
+
+            <button type="submit" id="btnLogin" class="btn-login">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+            </button>
+        </form>
+
+        <hr class="divider" />
+
+        <div class="hint-box">
+            <strong>Default accounts:</strong><br />
+            admin / Admin@123 &nbsp;|&nbsp; hruser / Hr@123<br />
+            payroll / Pay@123 &nbsp;|&nbsp; manager / Mgr@123 &nbsp;|&nbsp; employee / Emp@123
+        </div>
+    </div>
+</body>
+</html>

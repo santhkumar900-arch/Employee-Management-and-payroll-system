@@ -1,0 +1,31 @@
+﻿@model List<EmployeeHrSystem.Models.Appraisal>
+
+<h2>Appraisals</h2>
+
+<p>
+    <a asp-controller="Appraisal" asp-action="Update" class="btn btn-success">
+
+    Update
+    Record Appraisal
+</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Appraisal Date</th>
+            <th>New Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Employee?.Name</td>
+                <td>@a.AppraisalDate</td>
+                <td>@a.NewSalary</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+﻿@model EmployeeHrSystem.Models.Appraisal
+
+<h2>Record Appraisal</h2>
+
+<form asp-action="Update" asp-controller="Appraisal" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Employee</label>
+        <select asp-for="EmployeeId" class="form-select" asp-items="ViewBag.EmployeeItems">
+            <option value="">-- select --</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Appraisal Date</label>
+        <input asp-for="AppraisalDate" type="date" class="form-control" />
+        <span asp-validation-for="AppraisalDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">New Salary</label>
+        <input asp-for="NewSalary" class="form-control" />
+        <span asp-validation-for="NewSalary" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-success" type="submit">Save</button>
+    <a asp-action="Index" asp-controller="Appaisal" class="btn btn-secondary">Back</a>
+
+</form>

@@ -1,0 +1,22 @@
+﻿@model EmployeeHrSystem.Models.HRReport
+
+<h2>HR Report</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Report Date</th>
+        <td>@Model.ReportDate</td>
+    </tr>
+    <tr>
+        <th>Total Employees</th>
+        <td>@Model.TotalEmployees</td>
+    </tr>
+    <tr>
+        <th>Average Attendance</th>
+        <td>@Model.AverageAttendance %</td>
+    </tr>
+    <tr>
+        <th>Payroll Summary</th>
+        <td>@Model.PayrollSummary</td>
+    </tr>
+</table>

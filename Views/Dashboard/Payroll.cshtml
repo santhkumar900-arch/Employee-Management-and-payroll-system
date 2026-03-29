@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Payroll Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-0"><i class="bi bi-cash-stack text-info me-2"></i>Payroll Dashboard</h2>
+        <p class="text-muted mb-0">Salary processing &amp; payment management</p>
+    </div>
+    <span class="badge bg-info text-dark fs-6 px-3 py-2"><i class="bi bi-wallet2 me-1"></i>Payroll Officer</span>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100" style="border-left:4px solid #06b6d4 !important;">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3" style="background:#cffafe;"><i class="bi bi-wallet2 fs-3 text-info"></i></div>
+                <div><div class="text-muted small">Process Payroll</div><div class="fw-bold fs-5">Run Salary Cycle</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100" style="border-left:4px solid #10b981 !important;">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="rounded-3 p-3" style="background:#d1fae5;"><i class="bi bi-receipt fs-3 text-success"></i></div>
+                <div><div class="text-muted small">Payroll Records</div><div class="fw-bold fs-5">View History</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5 class="fw-semibold mb-3 text-muted">Payroll Modules</h5>
+<div class="row g-3">
+    <div class="col-md-6">
+        <a asp-controller="Payroll" asp-action="Index"
+           class="card border-0 shadow-sm text-decoration-none h-100 dashboard-card">
+            <div class="card-body text-center py-4">
+                <i class="bi bi-cash-stack fs-2 text-info mb-2 d-block"></i>
+                <div class="fw-semibold">Payroll Management</div>
+                <div class="text-muted small mt-1">Process &amp; review salary records</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a asp-controller="Employee" asp-action="Index"
+           class="card border-0 shadow-sm text-decoration-none h-100 dashboard-card">
+            <div class="card-body text-center py-4">
+                <i class="bi bi-people fs-2 text-secondary mb-2 d-block"></i>
+                <div class="fw-semibold">Employee Salaries</div>
+                <div class="text-muted small mt-1">View basic salary data</div>
+            </div>
+        </a>
+    </div>
+</div>

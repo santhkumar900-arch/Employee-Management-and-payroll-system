@@ -1,0 +1,37 @@
+﻿@model EmployeeHrSystem.Models.Evaluation
+
+<h2>Record Evaluation</h2>
+
+<form asp-action="Record" asp-controller="Performance" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Employee</label>
+        <select asp-for="EmployeeId" class="form-select" asp-items="ViewBag.EmployeeItems">
+            <option value="">-- select --</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input asp-for="EvaluationDate" type="date" class="form-control" />
+        <span asp-validation-for="EvaluationDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Score</label>
+        <input asp-for="Score" class="form-control" />
+        <span asp-validation-for="Score" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Remarks</label>
+        <input asp-for="Remarks" class="form-control" />
+        <span asp-validation-for="Remarks" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-success" type="submit">Save</button>
+    <a asp-action="Index" asp-controller="Performance" class="btn btn-secondary">Back</a>
+</form>

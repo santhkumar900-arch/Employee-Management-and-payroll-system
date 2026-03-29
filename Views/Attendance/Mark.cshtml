@@ -1,0 +1,36 @@
+﻿@model EmployeeHrSystem.Models.Attendance
+
+<h2>Mark Attendance</h2>
+
+<form asp-action="Mark" asp-controller="Attendance" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Employee</label>
+        <select asp-for="EmployeeId"
+                class="form-select"
+                asp-items="ViewBag.EmployeeItems">
+            <option value="">-- select --</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input asp-for="Date" type="date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select asp-for="Status" class="form-select">
+            <option>PRESENT</option>
+            <option>ABSENT</option>
+            <option>LEAVE</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-success" type="submit">Save</button>
+    <a asp-action="Index" asp-controller="Attendance" class="btn btn-secondary">Back</a>
+</form>

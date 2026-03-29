@@ -1,0 +1,57 @@
+@model List<LeaveRequest>
+<h2>Leave Requests</h2>
+<p>
+    <a asp-controller="Leave" asp-action="Apply" class="btn btn-success">
+        Apply Leave
+    </a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Type</th>
+            <th>Status</th>
+            @if (User.IsInRole("Admin") || User.IsInRole("HR Officer") || User.IsInRole("Manager"))
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Employee?.Name</td>
+                <td>@r.StartDate</td>
+                <td>@r.EndDate</td>
+                <td>@r.LeaveType</td>
+                <td>
+                    @{
+                        var badgeClass = r.Status switch
+                        {
+                            "APPROVED" => "badge bg-success",
+                            "REJECTED" => "badge bg-danger",
+                            _ => "badge bg-warning text-dark"
+                        };
+                    }
+                    <span class="@badgeClass">@r.Status</span>
+                </td>
+                @if (User.IsInRole("Admin") || User.IsInRole("HR Officer") || User.IsInRole("Manager"))
+                {
+                    <td>
+                        @if (r.Status == "APPLIED")
+                        {
+                            <a asp-action="Approve" asp-route-id="@r.LeaveId" class="btn btn-sm btn-success">Approve</a>
+                            <a asp-action="Reject" asp-route-id="@r.LeaveId" class="btn btn-sm btn-danger">Reject</a>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
